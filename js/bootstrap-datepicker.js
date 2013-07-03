@@ -53,6 +53,8 @@
 			this.picker.addClass('datepicker-dropdown dropdown-menu');
 		}
 
+		this.position = !this.o.position ? this.picker.addClass("bottom") : this.picker.addClass(this.o.position)
+
 		if (this.o.rtl){
 			this.picker.addClass('datepicker-rtl');
 			this.picker.find('.prev i, .next i')
@@ -355,9 +357,16 @@
 						}).first().css('z-index'))+10;
 			var offset = this.component ? this.component.parent().offset() : this.element.offset();
 			var height = this.component ? this.component.outerHeight(true) : this.element.outerHeight(true);
+			var width = this.component ? this.component.outerWidth(true) : this.element.outerWidth(true);			
+			if(!this.o.position || this.o.position == "bottom"){
+				var top = offset.top + height;
+			}
+			else if(this.o.position == "top"){
+				var top = offset.top - this.picker.outerHeight(true);
+			}
 			this.picker.css({
-				top: offset.top + height,
-				left: offset.left,
+				top: top + "px",
+				left: offset.left - width + "px",
 				zIndex: zIndex
 			});
 		},

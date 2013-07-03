@@ -34,6 +34,33 @@ test('Autoclose', function(){
     datesEqual(dp.viewDate, UTCDate(2012, 2, 4));
 });
 
+test('Options: position - top', function(){
+    var input = $('<input />')
+                .appendTo('#qunit-fixture')
+                .val('2012-03-05')
+                .datepicker({
+                    position: 'top'
+                }),
+        dp = input.data('datepicker'),
+        picker = dp.picker,
+        target;
+
+        ok(picker.hasClass("top"), 'Top class applied');
+});
+
+test('Options: position - bottom', function(){
+    var input = $('<input />')
+                .appendTo('#qunit-fixture')
+                .val('2012-03-05')
+                .datepicker({
+                }),
+        dp = input.data('datepicker'),
+        picker = dp.picker,
+        target;
+
+        ok(picker.hasClass("bottom"), 'Bottom class applied');
+});
+
 test('Startview: year view (integer)', function(){
     var input = $('<input />')
                 .appendTo('#qunit-fixture')
